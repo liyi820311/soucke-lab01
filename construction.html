@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实验室搭建 · 搜科之家</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#003d7a;
+  --navy-dark:#002855;
+  --green:#2e8b57;
+  --text:#111;
+  --muted:#555;
+  --hint:#999;
+  --border:#dde3ec;
+  --white:#fff;
+  --bg:#f5f7fa;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--white);line-height:1.8;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:1080px;margin:0 auto;padding:0 40px}
+
+/* NAV */
+.nav{background:rgba(255,255,255,.97);border-bottom:1px solid var(--border);position:fixed;top:0;left:0;right:0;z-index:200;box-shadow:0 1px 0 var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:60px;max-width:1080px;margin:0 auto}
+.nav-logo{font-size:15px;font-weight:800;color:var(--navy);letter-spacing:-0.3px}
+.nav-logo span{color:var(--muted);font-weight:400}
+.nav-menu{display:flex;align-items:center}
+.nav-item{padding:6px 14px;font-size:13px;font-weight:500;color:var(--muted);border-radius:4px;transition:color .15s}
+.nav-item:hover,.nav-item.active{color:var(--navy)}
+.nav-item.active{color:var(--navy);font-weight:700}
+.nav-cta{background:var(--green);color:var(--white)!important;padding:7px 16px;border-radius:4px;margin-left:8px;font-weight:600}
+.nav-cta:hover{background:#247048}
+.nav-mob{display:none;background:none;border:none;font-size:20px;cursor:pointer}
+@media(max-width:768px){
+  .nav-inner{padding:0 20px}
+  .nav-menu{display:none;position:absolute;top:60px;left:0;right:0;background:rgba(255,255,255,.97);flex-direction:column;padding:12px 16px;border-bottom:1px solid var(--border);box-shadow:0 6px 16px rgba(0,0,0,.06);z-index:200}
+  .nav-menu.show{display:flex}
+  .nav-mob{display:block}
+}
+
+/* HERO */
+.hero{background:var(--white);padding:120px 0 80px;border-bottom:1px solid var(--border)}
+.hero-inner{max-width:1080px;margin:0 auto;padding:0 40px;text-align:center}
+.hero-label{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:3px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:900;line-height:1.15;margin-bottom:18px;letter-spacing:-1px;color:var(--text)}
+.hero h1 em{color:var(--navy);font-style:normal}
+.hero p{font-size:15px;color:var(--muted);line-height:1.9;max-width:600px;margin:0 auto 36px}
+.hero-btns{display:flex;gap:12px;justify-content:center}
+.btn-primary{background:var(--navy);color:var(--white);padding:13px 28px;border-radius:5px;font-size:13px;font-weight:700;border:none;cursor:pointer;transition:background .15s}
+.btn-primary:hover{background:var(--navy-dark)}
+.btn-ghost{background:transparent;color:var(--navy);padding:13px 28px;border-radius:5px;font-size:13px;font-weight:700;border:1.5px solid var(--navy);cursor:pointer;transition:all .15s}
+.btn-ghost:hover{background:var(--navy);color:var(--white)}
+
+/* PROCESS */
+.section{padding:80px 0;border-top:1px solid var(--border)}
+.section-label{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.section-title{font-size:28px;font-weight:800;margin-bottom:10px;letter-spacing:-0.5px;line-height:1.2;color:var(--text)}
+.section-sub{font-size:14px;color:var(--muted);max-width:560px;line-height:1.8;margin-bottom:48px}
+.process{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.proc-step{background:var(--white);padding:28px 20px;text-align:center}
+.proc-num{width:32px;height:32px;border-radius:50%;background:var(--navy);color:var(--white);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.proc-step h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.proc-step p{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* STANDARDS */
+.standards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.std-card{background:var(--white);padding:32px 24px}
+.std-icon{font-size:28px;margin-bottom:14px}
+.std-card h3{font-size:15px;font-weight:700;margin-bottom:12px;color:var(--navy)}
+.std-card p{font-size:13px;color:var(--muted);line-height:1.8}
+.std-card p strong{color:var(--text)}
+
+/* BOTTOM CTA */
+.btn-group{display:flex;gap:12px;justify-content:center;margin-top:56px;flex-wrap:wrap}
+.btn-outline{background:transparent;color:var(--navy);padding:13px 28px;border-radius:5px;font-size:13px;font-weight:700;border:1.5px solid var(--navy);cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:8px}
+.btn-outline:hover{background:var(--navy);color:var(--white)}
+.btn-solid{background:var(--green);color:var(--white);padding:13px 28px;border-radius:5px;font-size:13px;font-weight:700;border:none;cursor:pointer;transition:background .15s;display:inline-flex;align-items:center;gap:8px}
+.btn-solid:hover{background:#247048}
+
+/* FOOTER */
+footer{background:#0a1f2e;color:rgba(255,255,255,.28);padding:24px 0;text-align:center;font-size:12px;line-height:2}
+footer a{color:rgba(255,255,255,.4);margin:0 8px}
+footer a:hover{color:rgba(255,255,255,.7)}
+
+/* FLOAT */
+.float{position:fixed;bottom:28px;right:28px;z-index:999}
+.float-btn{width:48px;height:48px;border-radius:50%;background:var(--green);color:var(--white);font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(46,139,87,.4);cursor:pointer;border:none}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .process{grid-template-columns:repeat(3,1fr)}
+  .standards{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .hero{padding:100px 0 60px}
+  .hero h1{font-size:28px}
+  .hero-btns{flex-direction:column;align-items:center}
+  .section{padding:60px 0}
+  .section-title{font-size:24px}
+  .process{grid-template-columns:1fr}
+  .standards{grid-template-columns:1fr}
+  .btn-group{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">🏠 搜科之家 <span>· 实验室服务</span></div>
+    <button class="nav-mob" onclick="document.getElementById('navMenu').classList.toggle('show')">☰</button>
+    <div class="nav-menu" id="navMenu">
+      <a class="nav-item" href="index.html">首页</a>
+      <a class="nav-item active" href="construction.html">实验室搭建</a>
+      <a class="nav-item" href="procurement.html">仪器集采</a>
+      <a class="nav-item" href="maintenance.html">设备维保</a>
+      <a class="nav-item" href="lms.html">管理系统</a>
+      <a class="nav-item" href="cases.html">案例</a>
+      <a class="nav-item nav-cta" href="#" onclick="openModal();return false">💬 咨询方案</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">实验室搭建</div>
+    <h1>专业实验室搭建，<em>合规、安全、高效</em></h1>
+    <p>从勘测到验收，全流程标准化服务，杜绝返工、降低合规风险</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="parent.openModal()">立即预约勘测 →</button>
+      <button class="btn-ghost" onclick="parent.openModal()">获取精准报价</button>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-label">PROCESS</div>
+    <h2 class="section-title">五步标准化流程</h2>
+    <p class="section-sub">全流程节点管控，每一步都有交付标准，确保实验室按时合规交付。</p>
+    <div class="process">
+      <div class="proc-step">
+        <div class="proc-num">1</div>
+        <h3>需求勘测</h3>
+        <p>现场勘察、需求梳理、场地测量、风险评估</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">2</div>
+        <h3>方案设计</h3>
+        <p>平面布局、暖通方案水电系统、选型清单</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">3</div>
+        <h3>标准施工</h3>
+        <p>专业施工团队、节点验收、材料溯源</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">4</div>
+        <h3>竣工验收</h3>
+        <p>第三方检测、CNAS报告、交付文档</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">5</div>
+        <h3>售后保障</h3>
+        <p>维保计划、应急响应、定期巡检</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg);border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label">STANDARDS</div>
+    <h2 class="section-title">规范标准</h2>
+    <p class="section-sub">严格执行国家标准，涵盖设计、通风、动线全链路合规要求。</p>
+    <div class="standards">
+      <div class="std-card">
+        <div class="std-icon">📐</div>
+        <h3>基础设计规范</h3>
+        <p>
+          <strong>GB 50346</strong> 生物安全实验室建筑技术规范<br>
+          <strong>GB 50016</strong> 建筑设计防火规范<br>
+          <strong>GB 50052</strong> 供配电系统设计规范<br>
+          净高 ≥ <strong>2.8m</strong>
+        </p>
+      </div>
+      <div class="std-card">
+        <div class="std-icon">💨</div>
+        <h3>通风系统标准</h3>
+        <p>
+          面风速：<strong>0.4–0.6 m/s</strong><br>
+          换气次数：<strong>≥12 次/h</strong><br>
+          废气处理：活性炭吸附 + UV光解 + 喷淋塔
+        </p>
+      </div>
+      <div class="std-card">
+        <div class="std-icon">🔀</div>
+        <h3>动线设计标准</h3>
+        <p>
+          <strong>人流动线</strong>：洁污分流、单向通行<br>
+          <strong>物流动线</strong>：独立通道、闭环管理<br>
+          <strong>布局</strong>：回字形布局，避免交叉污染
+        </p>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn-outline" onclick="parent.openModal()">📥 下载方案模板</button>
+      <button class="btn-solid" onclick="parent.openModal()">📅 立即预约勘测</button>
+      <button class="btn-outline" onclick="parent.openModal()">💰 获取精准报价</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 搜科之家 · 实验室一站式服务 &nbsp;|&nbsp; 搜科网供应链旗下品牌</p>
+    <p style="margin-top:4px"><a href="cases.html">案例中心</a> | <a href="downloads.html">资料下载</a> | <a href="faq.html">常见问题</a> | <a href="#">关于我们</a></p>
+  </div>
+</footer>
+
+<div class="float">
+  <button class="float-btn" onclick="parent.openModal()">💬</button>
+</div>
+
+</body>
+</html>

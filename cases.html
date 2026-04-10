@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案例中心 · 搜科之家</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#003d7a;
+  --navy-dark:#002855;
+  --green:#2e8b57;
+  --text:#111;
+  --muted:#555;
+  --hint:#999;
+  --border:#dde3ec;
+  --white:#fff;
+  --bg:#f5f7fa;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--white);line-height:1.8;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:1080px;margin:0 auto;padding:0 40px}
+
+/* NAV */
+.nav{background:rgba(255,255,255,.97);border-bottom:1px solid var(--border);position:fixed;top:0;left:0;right:0;z-index:200;box-shadow:0 1px 0 var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:60px;max-width:1080px;margin:0 auto}
+.nav-logo{font-size:15px;font-weight:800;color:var(--navy);letter-spacing:-0.3px}
+.nav-logo span{color:var(--muted);font-weight:400}
+.nav-menu{display:flex;align-items:center}
+.nav-item{padding:6px 14px;font-size:13px;font-weight:500;color:var(--muted);border-radius:4px;transition:color .15s}
+.nav-item:hover,.nav-item.active{color:var(--navy)}
+.nav-cta{background:var(--green);color:var(--white)!important;padding:7px 16px;border-radius:4px;margin-left:8px;font-weight:600}
+.nav-cta:hover{background:#247048}
+.nav-mob{display:none;background:none;border:none;font-size:20px;cursor:pointer}
+
+/* PAGE HERO */
+.page-hero{background:var(--white);padding:120px 0 64px;border-bottom:1px solid var(--border)}
+.page-hero .container{max-width:1080px;margin:0 auto;padding:0 40px}
+.page-label{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px}
+.page-hero h1{font-size:40px;font-weight:900;line-height:1.15;letter-spacing:-1px;color:var(--text);margin-bottom:12px}
+.page-hero p{font-size:15px;color:var(--muted);max-width:560px;line-height:1.9}
+
+/* CASE CARDS */
+.cases-section{padding:72px 0 80px}
+.cases-grid{display:flex;flex-direction:column;gap:28px}
+.case-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:box-shadow .2s}
+.case-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.case-top{display:flex;align-items:stretch;min-height:200px}
+.case-img{flex:0 0 280px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:64px;border-right:1px solid var(--border)}
+.case-body{flex:1;padding:28px 32px;display:flex;flex-direction:column;justify-content:space-between}
+.case-meta{display:flex;gap:16px;margin-bottom:14px;flex-wrap:wrap}
+.case-tag{padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:0.5px}
+.case-tag.green{background:#e6f4ed;color:var(--green)}
+.case-tag.navy{background:#e6edf5;color:var(--navy)}
+.case-tag.gray{background:#eeeef0;color:var(--muted)}
+.case-title{font-size:18px;font-weight:800;margin-bottom:4px;letter-spacing:-0.3px}
+.case-info{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.8}
+.case-info strong{color:var(--text)}
+.case-services{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.svc-tag{padding:3px 10px;background:var(--bg);border:1px solid var(--border);border-radius:20px;font-size:11px;color:var(--muted)}
+.case-review{background:var(--bg);border-radius:5px;padding:14px 16px;font-size:13px;color:var(--muted);line-height:1.7;border-left:3px solid var(--green)}
+.case-review::before{content:"💬 ";}
+.case-divider{height:1px;background:var(--border);margin:0 32px}
+.case-bottom{display:flex;align-items:center;justify-content:space-between;padding:14px 32px;font-size:12px;color:var(--hint)}
+.case-std{display:flex;align-items:center;gap:6px}
+.case-std-icon{font-size:14px}
+
+/* STATS BAR */
+.stats-bar{background:var(--navy);color:var(--white);padding:40px 0}
+.stats-bar-inner{max-width:1080px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-around;flex-wrap:wrap;gap:32px}
+.sb-item{text-align:center}
+.sb-num{font-size:36px;font-weight:900;letter-spacing:-1.5px}
+.sb-label{font-size:12px;opacity:.65;margin-top:2px}
+
+/* CTA */
+.cta{background:var(--navy);color:var(--white);padding:80px 0;text-align:center}
+.cta h2{font-size:30px;font-weight:900;margin-bottom:10px}
+.cta > .container > p{font-size:14px;opacity:.7;margin-bottom:32px}
+.cta-form{max-width:520px;margin:0 auto;background:rgba(255,255,255,.07);border-radius:6px;padding:32px;border:1px solid rgba(255,255,255,.12)}
+.cta-form > p{font-size:13px;opacity:.7;margin-bottom:18px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.form-row.f{grid-template-columns:1fr}
+.fi{width:100%;padding:13px 14px;border-radius:4px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.93);font-size:13px;outline:none;font-family:inherit;color:var(--text)}
+.fi::placeholder{color:#b0b0b8}
+select.fi{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;color:var(--text)}
+.fs{width:100%;padding:14px;border-radius:4px;background:var(--green);color:var(--white);border:none;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+.fs:hover{background:#247048}
+.cta-note{font-size:11px;opacity:.4;margin-top:8px}
+.cta-dots{margin-top:28px;font-size:13px;opacity:.6}
+.cta-dots span{font-size:20px;margin-right:6px}
+
+/* FOOTER */
+footer{background:#0a1f2e;color:rgba(255,255,255,.28);padding:24px 0;text-align:center;font-size:12px;line-height:2}
+footer a{color:rgba(255,255,255,.4);margin:0 8px}
+footer a:hover{color:rgba(255,255,255,.7)}
+
+/* FLOAT */
+.float{position:fixed;bottom:28px;right:28px;z-index:999}
+.float-btn{width:48px;height:48px;border-radius:50%;background:var(--green);color:var(--white);font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(46,139,87,.4);cursor:pointer;border:none;transition:transform .15s}
+.float-btn:hover{transform:scale(1.05)}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+.modal{background:var(--white);border-radius:8px;max-width:480px;width:100%;padding:32px;position:relative}
+.modal-x{position:absolute;top:14px;right:16px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--hint)}
+.modal h3{font-size:18px;font-weight:800;margin-bottom:5px}
+.modal > p{font-size:13px;color:var(--muted);margin-bottom:20px}
+.modal-succ{text-align:center;padding:28px 0;display:none}
+.modal-succ.show{display:block}
+.modal-succ .ms-icon{font-size:48px;margin-bottom:14px}
+.modal-succ h4{font-size:17px;font-weight:800;margin-bottom:7px}
+.modal-succ p{font-size:13px;color:var(--muted)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .case-img{flex:0 0 220px}
+  .case-body{padding:24px}
+}
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .page-hero .container{padding:0 20px}
+  .nav-inner{padding:0 20px}
+  .nav-menu{display:none;position:absolute;top:60px;left:0;right:0;background:rgba(255,255,255,.97);flex-direction:column;padding:12px 16px;border-bottom:1px solid var(--border);box-shadow:0 6px 16px rgba(0,0,0,.06);z-index:200}
+  .nav-menu.show{display:flex}
+  .nav-mob{display:block}
+  .page-hero{padding:100px 0 48px}
+  .page-hero h1{font-size:28px}
+  .case-top{flex-direction:column}
+  .case-img{flex:0 0 160px;border-right:none;border-bottom:1px solid var(--border);font-size:52px}
+  .case-body{padding:20px}
+  .case-bottom{flex-direction:column;align-items:flex-start;gap:8px}
+  .cases-section{padding:48px 0 60px}
+  .form-row{grid-template-columns:1fr}
+  .cta h2{font-size:24px}
+  .cta-form{padding:24px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">🏠 搜科之家 <span>· 实验室服务</span></div>
+    <button class="nav-mob" onclick="document.getElementById('navMenu').classList.toggle('show')">☰</button>
+    <div class="nav-menu" id="navMenu">
+      <a class="nav-item" href="index.html">首页</a>
+      <a class="nav-item" href="construction.html">实验室搭建</a>
+      <a class="nav-item" href="procurement.html">仪器集采</a>
+      <a class="nav-item" href="maintenance.html">设备维保</a>
+      <a class="nav-item" href="lms.html">管理系统</a>
+      <a class="nav-item active" href="cases.html">案例</a>
+      <a class="nav-item nav-cta" href="#" onclick="openModal();return false">💬 咨询方案</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-label">CASE STUDIES</div>
+    <h1>案例中心</h1>
+    <p>覆盖高校、药企、第三方检测机构等多元场景，真实案例验证全链路服务能力</p>
+  </div>
+</section>
+
+<section class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="sb-item"><div class="sb-num">100+</div><div class="sb-label">服务案例</div></div>
+    <div class="sb-item"><div class="sb-num">500+</div><div class="sb-label">合作品牌</div></div>
+    <div class="sb-item"><div class="sb-num">30%</div><div class="sb-label">成本降低</div></div>
+    <div class="sb-item"><div class="sb-num">24h</div><div class="sb-label">维保响应</div></div>
+  </div>
+</section>
+
+<section class="cases-section">
+  <div class="container">
+    <div class="cases-grid">
+
+      <!-- 案例1 -->
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-img">🏗️</div>
+          <div class="case-body">
+            <div>
+              <div class="case-meta">
+                <span class="case-tag green">高校</span>
+                <span class="case-tag navy">实验室搭建</span>
+                <span class="case-tag gray">GB 50346</span>
+              </div>
+              <h3 class="case-title">某高校化学实验室搭建 + 仪器集采项目</h3>
+              <div class="case-info">
+                <strong>面积：</strong>200㎡ &nbsp;|&nbsp; <strong>规范：</strong>GB 50346 实验室建设标准 &nbsp;|&nbsp; <strong>用途：</strong>基础化学教学
+              </div>
+              <div class="case-services">
+                <span class="svc-tag">现场勘测</span>
+                <span class="svc-tag">合规布局设计</span>
+                <span class="svc-tag">实验家具安装</span>
+                <span class="svc-tag">仪器集采</span>
+                <span class="svc-tag">培训与维保</span>
+              </div>
+            </div>
+            <div class="case-review">
+              从前期勘测到家具安装再到仪器进场，全程专业高效。布局设计完全符合规范要求，验收一次性通过，师生反馈非常好。
+            </div>
+          </div>
+        </div>
+        <div class="case-divider"></div>
+        <div class="case-bottom">
+          <div class="case-std"><span class="case-std-icon">📐</span> GB 50346 实验室建设标准</div>
+          <div>高校 · 基础化学教学场景</div>
+        </div>
+      </div>
+
+      <!-- 案例2 -->
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-img">💻</div>
+          <div class="case-body">
+            <div>
+              <div class="case-meta">
+                <span class="case-tag green">药企</span>
+                <span class="case-tag navy">管理系统</span>
+                <span class="case-tag gray">CNAS / GMP</span>
+              </div>
+              <h3 class="case-title">某药企 QC 实验室建设 + 管理系统部署项目</h3>
+              <div class="case-info">
+                <strong>面积：</strong>300㎡ &nbsp;|&nbsp; <strong>规范：</strong>CNAS / GMP 认证要求 &nbsp;|&nbsp; <strong>用途：</strong>药品质量检测
+              </div>
+              <div class="case-services">
+                <span class="svc-tag">合规认证辅导</span>
+                <span class="svc-tag">实验室搭建验收</span>
+                <span class="svc-tag">精密仪器集采</span>
+                <span class="svc-tag">设备维保</span>
+                <span class="svc-tag">管理系统部署</span>
+              </div>
+            </div>
+            <div class="case-review">
+              搜科团队对GMP和CNAS规范理解深入，管理系统与实验流程高度契合，认证验收全程绿灯，大幅缩短了我们的合规周期。
+            </div>
+          </div>
+        </div>
+        <div class="case-divider"></div>
+        <div class="case-bottom">
+          <div class="case-std"><span class="case-std-icon">📋</span> CNAS / GMP 双重合规认证</div>
+          <div>药企 · 药品质量检测场景</div>
+        </div>
+      </div>
+
+      <!-- 案例3 -->
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-img">🔧</div>
+          <div class="case-body">
+            <div>
+              <div class="case-meta">
+                <span class="case-tag green">第三方检测</span>
+                <span class="case-tag navy">维保 + 集采</span>
+                <span class="case-tag gray">食品 / 环境</span>
+              </div>
+              <h3 class="case-title">某第三方检测机构设备维保 + 耗材集采项目</h3>
+              <div class="case-info">
+                <strong>面积：</strong>500㎡ &nbsp;|&nbsp; <strong>领域：</strong>食品 / 环境检测 &nbsp;|&nbsp; <strong>模式：</strong>长期维保
+              </div>
+              <div class="case-services">
+                <span class="svc-tag">季度巡检</span>
+                <span class="svc-tag">故障维修</span>
+                <span class="svc-tag">耗材供应</span>
+                <span class="svc-tag">维保档案</span>
+                <span class="svc-tag">运维优化</span>
+              </div>
+            </div>
+            <div class="case-review">
+              维保响应速度快，耗材供应稳定且价格透明。运维团队定期给出优化建议，设备综合运行效率明显提升，是真正靠谱的长期合作伙伴。
+            </div>
+          </div>
+        </div>
+        <div class="case-divider"></div>
+        <div class="case-bottom">
+          <div class="case-std"><span class="case-std-icon">📊</span> 食品 / 环境 检测领域</div>
+          <div>第三方检测 · 长期维保合作</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="consult">
+  <div class="container">
+    <h2>免费获取定制方案</h2>
+    <p>1小时内安排专业顾问对接</p>
+    <div class="cta-form">
+      <p>📞 搜科之家实验室服务团队，为您量身定制解决方案</p>
+      <div class="form-row">
+        <input class="fi" type="text" placeholder="您的姓名 *" />
+        <input class="fi" type="tel" placeholder="手机号码 *" />
+      </div>
+      <div class="form-row f">
+        <select class="fi"><option value="">所属行业（请选择）</option><option>高校</option><option>药企</option><option>第三方检测机构</option><option>其他</option></select>
+      </div>
+      <div class="form-row f">
+        <input class="fi" type="text" placeholder="实验室面积（选填）" />
+      </div>
+      <button class="fs" onclick="submitForm(this)">提交预约 →</button>
+      <div class="cta-note">🔒 您的信息仅用于服务对接，绝不对外透露</div>
+    </div>
+    <div class="cta-dots"><span>💬</span> 或扫码添加企业微信，获取即时服务</div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 搜科之家 · 实验室一站式服务 &nbsp;|&nbsp; 搜科网供应链旗下品牌</p>
+    <p style="margin-top:4px"><a href="cases.html">案例中心</a> | <a href="downloads.html">资料下载</a> | <a href="faq.html">常见问题</a> | <a href="#">关于我们</a></p>
+  </div>
+</footer>
+
+<div class="float">
+  <button class="float-btn" onclick="openModal()">💬</button>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal()">×</button>
+    <div id="modalForm">
+      <h3>💬 在线咨询</h3>
+      <p>请留下您的姓名+电话+行业，我们1小时内安排专员对接</p>
+      <div class="form-row"><input class="fi" type="text" placeholder="您的姓名 *" /><input class="fi" type="tel" placeholder="手机号码 *" /></div>
+      <div class="form-row f"><select class="fi"><option value="">所属行业（请选择）</option><option>高校</option><option>药企</option><option>第三方检测机构</option><option>其他</option></select></div>
+      <div class="form-row f"><input class="fi" type="text" placeholder="实验室面积（选填）" /></div>
+      <button class="fs" onclick="submitForm(this)">提交预约 →</button>
+      <div class="cta-note">🔒 您的信息仅用于服务对接，绝不对外透露</div>
+    </div>
+    <div class="modal-succ" id="modalSucc">
+      <div class="ms-icon">✅</div>
+      <h4>预约已提交！</h4>
+      <p>我们的顾问将在1小时内与您联系，请保持电话畅通。</p>
+      <button class="fs" style="margin-top:20px" onclick="closeModal()">关闭</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(){document.getElementById('modalOverlay').classList.add('show');document.getElementById('modalForm').style.display='block';document.getElementById('modalSucc').classList.remove('show');document.body.style.overflow='hidden'}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('show');document.body.style.overflow=''}
+function submitForm(btn){btn.textContent='提交中...';btn.disabled=true;setTimeout(function(){document.getElementById('modalForm').style.display='none';document.getElementById('modalSucc').classList.add('show');btn.textContent='提交预约 →';btn.disabled=false},800)}
+</script>
+
+</body>
+</html>
