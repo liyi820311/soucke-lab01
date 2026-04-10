@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>搜科之家·实验室一站式服务</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#003d7a;
+  --navy-light:#0057a8;
+  --green:#2e8b57;
+  --green-light:#e8f5ee;
+  --text:#1a1a1a;
+  --text-body:#666666;
+  --text-hint:#999999;
+  --border:#dde3ec;
+  --white:#ffffff;
+  --bg:#f5f7fa;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--white);line-height:1.8;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:1080px;margin:0 auto;padding:0 40px}
+
+/* NAV */
+.nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:58px;max-width:1080px;margin:0 auto}
+.nav-logo{font-size:15px;font-weight:800;color:var(--navy);letter-spacing:-0.3px}
+.nav-logo span{color:var(--text-body);font-weight:400}
+.nav-menu{display:flex;align-items:center;gap:0}
+.nav-item{padding:6px 13px;font-size:13px;font-weight:500;color:var(--text-body);border-radius:4px;transition:all .15s;cursor:pointer}
+.nav-item:hover{color:var(--navy)}
+.nav-item.active{color:var(--navy);font-weight:700}
+.nav-cta{background:var(--green);color:var(--white)!important;padding:7px 15px;border-radius:4px;margin-left:8px;font-size:13px;font-weight:600}
+.nav-cta:hover{background:#247048}
+.nav-mob{display:none;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text)}
+
+/* HERO */
+.hero{background:var(--white);padding:72px 0 64px;border-bottom:1px solid var(--border)}
+.hero-grid{max-width:1080px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hero-label{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.hero h1{font-size:40px;font-weight:900;line-height:1.15;margin-bottom:14px;letter-spacing:-1px;color:var(--text)}
+.hero h1 em{color:var(--navy);font-style:normal}
+.hero p{font-size:15px;color:var(--text-body);line-height:1.85;max-width:460px;margin-bottom:28px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--green);color:var(--white);padding:12px 26px;border-radius:4px;font-size:13px;font-weight:700;border:none;cursor:pointer;transition:background .15s}
+.btn-primary:hover{background:#247048}
+.btn-ghost{background:transparent;color:var(--navy);padding:12px 26px;border-radius:4px;font-size:13px;font-weight:700;border:1.5px solid var(--navy);cursor:pointer;transition:all .15s}
+.btn-ghost:hover{background:var(--navy);color:var(--white)}
+.hero-img{background:var(--bg);border-radius:8px;height:320px;display:flex;align-items:center;justify-content:center;font-size:80px}
+
+/* SECTIONS */
+.section{padding:68px 0}
+.section+.section{border-top:1px solid var(--border)}
+.bg{background:var(--bg)}
+.section-header{margin-bottom:44px}
+.section-header.center{text-align:center}
+.section-label{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.section-title{font-size:28px;font-weight:800;margin-bottom:8px;letter-spacing:-0.5px;line-height:1.2}
+.section-sub{font-size:14px;color:var(--text-body);max-width:520px;line-height:1.8}
+.section-header.center .section-sub{margin:0 auto}
+
+/* SERVICES 6-GRID */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.svc-card{background:var(--white);padding:28px 24px;transition:background .15s}
+.svc-card:hover{background:var(--bg)}
+.svc-icon{font-size:28px;margin-bottom:12px}
+.svc-card h3{font-size:15px;font-weight:700;margin-bottom:7px}
+.svc-card p{font-size:13px;color:var(--text-body);line-height:1.7}
+.stats-row{display:flex;justify-content:center;gap:72px;margin-top:44px;padding-top:44px;border-top:1px solid var(--border);flex-wrap:wrap}
+.stat-item{text-align:center}
+.stat-num{font-size:34px;font-weight:900;color:var(--navy);margin-bottom:2px;letter-spacing:-1px}
+.stat-label{font-size:12px;color:var(--text-body);font-weight:500}
+
+/* PROCESS */
+.process-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.process-grid::before{content:'';position:absolute;top:24px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--navy),var(--green));border-radius:1px;z-index:0}
+.proc-step{text-align:center;position:relative;z-index:1}
+.proc-num{width:48px;height:48px;border-radius:50%;background:var(--white);border:2px solid var(--navy);color:var(--navy);font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.proc-step h4{font-size:13px;font-weight:700;margin-bottom:5px}
+.proc-step p{font-size:11px;color:var(--text-body);max-width:110px;margin:0 auto;line-height:1.5}
+
+/* STANDARDS */
+.std-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.std-card{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:20px 22px}
+.std-card h4{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.std-card ul{list-style:none}
+.std-card ul li{font-size:12px;color:var(--text-body);padding:3px 0;line-height:1.5}
+
+/* PKG */
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pkg-card{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:26px 22px;transition:border-color .15s,box-shadow .15s}
+.pkg-card:hover{border-color:var(--navy-light);box-shadow:0 4px 16px rgba(0,0,0,0.06)}
+.pkg-card.popular{border-color:var(--navy);background:var(--bg)}
+.pkg-tag{font-size:11px;font-weight:700;color:var(--text-hint);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
+.pkg-name{font-size:17px;font-weight:800;margin-bottom:4px}
+.pkg-desc{font-size:12px;color:var(--text-body);margin-bottom:16px}
+.pkg-price{font-size:24px;font-weight:900;color:var(--navy);margin-bottom:4px}
+.pkg-price span{font-size:11px;font-weight:400;color:var(--text-hint)}
+.pkg-list{list-style:none;margin-bottom:20px}
+.pkg-list li{font-size:12px;color:var(--text-body);padding:6px 0;border-bottom:1px solid var(--bg)}
+.pkg-list li:last-child{border-bottom:none}
+.pkg-btn{display:block;text-align:center;padding:10px;background:var(--navy);color:var(--white);border-radius:4px;font-size:12px;font-weight:700;transition:background .15s}
+.pkg-btn:hover{background:var(--navy-light)}
+.pkg-card.popular .pkg-btn{background:var(--green)}
+.pkg-card.popular .pkg-btn:hover{background:#247048}
+
+/* CAT */
+.cat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.cat-card{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:18px 20px}
+.cat-card h4{font-size:13px;font-weight:700;margin-bottom:8px}
+.cat-card ul{list-style:none}
+.cat-card ul li{font-size:12px;color:var(--text-body);padding:3px 0;line-height:1.5}
+
+/* MAINT */
+.maint-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.maint-card{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:22px 18px;text-align:center;transition:border-color .15s}
+.maint-card:hover{border-color:var(--navy-light)}
+.maint-icon{font-size:28px;margin-bottom:10px}
+.maint-card h4{font-size:13px;font-weight:700;margin-bottom:7px}
+.maint-card p{font-size:12px;color:var(--text-body);line-height:1.65}
+.maint-levels{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px;background:var(--white);border:1px solid var(--border);border-radius:6px;padding:16px}
+.lvl-item{text-align:center;padding:14px 10px;background:var(--bg);border-radius:4px}
+.lvl-item h5{font-size:11px;font-weight:700;color:var(--text-hint);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.lvl-item p{font-size:12px;font-weight:600;color:var(--text)}
+
+/* LMS */
+.lms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.lms-card{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:22px;transition:border-color .15s}
+.lms-card:hover{border-color:var(--navy-light)}
+.lms-card h4{font-size:14px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.lms-card ul{list-style:none}
+.lms-card ul li{font-size:12px;color:var(--text-body);padding:3px 0;line-height:1.5}
+.lms-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:32px}
+.lms-stat{background:var(--navy);color:var(--white);border-radius:4px;padding:18px 10px;text-align:center}
+.lms-stat .n{font-size:24px;font-weight:900;margin-bottom:3px}
+.lms-stat .l{font-size:11px;opacity:0.75;line-height:1.3}
+
+/* CASES */
+.case-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.case-card{background:var(--white);border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:border-color .15s}
+.case-card:hover{border-color:var(--navy-light)}
+.case-top{padding:18px 20px;border-bottom:1px solid var(--border)}
+.case-badge{font-size:10px;font-weight:800;background:var(--bg);color:var(--navy);padding:2px 8px;border-radius:3px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;display:inline-block}
+.case-title{font-size:14px;font-weight:700;margin-bottom:3px}
+.case-meta{font-size:11px;color:var(--text-hint);display:flex;gap:8px;flex-wrap:wrap}
+.case-body{padding:16px 20px}
+.case-body h5{font-size:11px;font-weight:700;color:var(--text-hint);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
+.case-svc{list-style:none;margin-bottom:12px}
+.case-svc li{font-size:12px;color:var(--text-body);padding:2px 0}
+.case-quote{font-size:12px;color:var(--text-body);font-style:italic;border-left:2px solid var(--navy);padding-left:10px;line-height:1.6}
+
+/* DL */
+.dl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dl-card{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:16px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:border-color .15s}
+.dl-card:hover{border-color:var(--navy-light)}
+.dl-icon{width:40px;height:40px;border-radius:6px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.dl-card h4{font-size:13px;font-weight:700;margin-bottom:2px}
+.dl-card p{font-size:11px;color:var(--text-hint)}
+
+/* FAQ */
+.faq-list{max-width:680px;margin:0 auto}
+.faq-item{background:var(--white);border:1px solid var(--border);border-radius:4px;margin-bottom:6px;overflow:hidden}
+.faq-q{padding:14px 18px;font-weight:700;font-size:13px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q::after{content:'+';font-size:16px;color:var(--navy);transition:transform .2s;font-weight:400}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{padding:0 18px 14px;font-size:13px;color:var(--text-body);line-height:1.8;display:none}
+.faq-item.open .faq-a{display:block}
+
+/* RECRUIT */
+.recruit-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rec-col{background:var(--bg);border-radius:6px;padding:24px}
+.rec-col h3{font-size:15px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.recruit-item{padding:12px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.recruit-item:last-child{border-bottom:none}
+.recruit-item .ri-l h4{font-size:13px;font-weight:700}
+.recruit-item .ri-l p{font-size:11px;color:var(--text-hint)}
+.recruit-item .ri-r{display:flex;gap:5px;flex-wrap:wrap}
+.tag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:3px}
+.tag-b{background:var(--white);color:var(--navy)}
+.tag-o{background:#fff3e0;color:#bf360c}
+.resume-item{padding:10px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.resume-item:last-child{border-bottom:none}
+.res-name{font-size:13px;font-weight:700}
+.res-name span{font-weight:400;color:var(--text-hint);font-size:11px}
+.res-contact{font-size:11px;color:var(--text-hint);text-align:right}
+.res-contact span{display:block}
+.res-note{font-size:11px;color:var(--text-hint);text-align:center;margin-top:14px}
+
+/* CTA */
+.cta{background:var(--navy);color:var(--white);padding:72px 0;text-align:center}
+.cta h2{font-size:30px;font-weight:900;margin-bottom:8px}
+.cta > .container > p{font-size:14px;opacity:.75;margin-bottom:32px}
+.cta-form{max-width:520px;margin:0 auto;background:rgba(255,255,255,0.08);border-radius:6px;padding:32px;border:1px solid rgba(255,255,255,0.15);position:relative}
+.cta-form > p{font-size:13px;opacity:.7;margin-bottom:18px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.form-row.f{grid-template-columns:1fr}
+.fi{width:100%;padding:12px 14px;border-radius:4px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,.93);font-size:13px;outline:none;font-family:inherit;color:var(--text)}
+.fi::placeholder{color:#b0b0b8}
+select.fi{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;color:var(--text)}
+.fs{width:100%;padding:13px;border-radius:4px;background:var(--green);color:var(--white);border:none;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+.fs:hover{background:#247048}
+.cta-note{font-size:11px;opacity:.45;margin-top:8px}
+.cta-dots{margin-top:28px;font-size:13px;opacity:.6;position:relative;z-index:1}
+.cta-dots span{font-size:20px;margin-right:6px}
+
+/* FOOTER */
+footer{background:#0a1f2e;color:rgba(255,255,255,.3);padding:24px 0;text-align:center;font-size:12px;line-height:2}
+footer a{color:rgba(255,255,255,.4);margin:0 8px}
+footer a:hover{color:rgba(255,255,255,.7)}
+
+/* FLOAT */
+.float{position:fixed;bottom:28px;right:28px;z-index:999}
+.float-btn{width:48px;height:48px;border-radius:50%;background:var(--green);color:var(--white);font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(46,139,87,0.4);cursor:pointer;border:none;transition:all .15s}
+.float-btn:hover{transform:scale(1.06);box-shadow:0 6px 20px rgba(46,139,87,0.5)}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+.modal{background:var(--white);border-radius:6px;max-width:480px;width:100%;padding:32px;position:relative;max-height:90vh;overflow-y:auto}
+.modal-x{position:absolute;top:14px;right:14px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--text-hint)}
+.modal h3{font-size:18px;font-weight:800;margin-bottom:5px}
+.modal > p{font-size:13px;color:var(--text-body);margin-bottom:20px}
+.modal-succ{text-align:center;padding:28px 0;display:none}
+.modal-succ.show{display:block}
+.modal-succ .ms-icon{font-size:48px;margin-bottom:14px}
+.modal-succ h4{font-size:17px;font-weight:800;margin-bottom:7px}
+.modal-succ p{font-size:13px;color:var(--text-body)}
+
+/* BOTTOM BTNS */
+.btm-btns{display:flex;gap:10px;justify-content:center;margin-top:36px;flex-wrap:wrap}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .pkg-grid,.lms-grid,.case-row{grid-template-columns:repeat(2,1fr)}
+  .process-grid{grid-template-columns:repeat(3,1fr);gap:16px}
+  .process-grid::before{display:none}
+  .maint-grid{grid-template-columns:repeat(2,1fr)}
+  .lms-stats{grid-template-columns:repeat(3,1fr)}
+  .recruit-wrap{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .nav-inner{padding:0 20px}
+  .nav-menu{display:none;position:absolute;top:58px;left:0;right:0;background:var(--white);flex-direction:column;padding:12px 16px;border-bottom:1px solid var(--border);box-shadow:0 6px 16px rgba(0,0,0,.08);z-index:200}
+  .nav-menu.show{display:flex}
+  .nav-mob{display:block}
+  .hero-grid{grid-template-columns:1fr;gap:32px}
+  .hero-img{height:220px;font-size:64px}
+  .hero h1{font-size:28px}
+  .section{padding:52px 0}
+  .section-title{font-size:24px}
+  .svc-grid,.pkg-grid,.lms-grid,.case-row,.cat-row,.std-grid,.dl-grid{grid-template-columns:1fr}
+  .stats-row{gap:28px}
+  .process-grid{grid-template-columns:repeat(2,1fr)}
+  .maint-grid,.maint-levels{grid-template-columns:repeat(2,1fr)}
+  .lms-stats{grid-template-columns:repeat(2,1fr)}
+  .form-row{grid-template-columns:1fr}
+  .cta h2{font-size:24px}
+  .cta-form{padding:24px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">🏠 搜科之家 <span>· 实验室服务</span></div>
+    <button class="nav-mob" onclick="document.getElementById('navMenu').classList.toggle('show')">☰</button>
+    <div class="nav-menu" id="navMenu">
+      <a class="nav-item active" href="#services">核心服务</a>
+      <a class="nav-item" href="#construction">实验室搭建</a>
+      <a class="nav-item" href="#procurement">仪器集采</a>
+      <a class="nav-item" href="#maintenance">设备维保</a>
+      <a class="nav-item" href="#lms">管理系统</a>
+      <a class="nav-item" href="#cases">案例中心</a>
+      <a class="nav-item" href="#downloads">资料下载</a>
+      <a class="nav-item nav-cta" href="#" onclick="openModal();return false">💬 咨询方案</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-label">实验室一站式服务</div>
+      <h1>搜科之家 · 实验室<span>全生命周期</span>服务</h1>
+      <p>从搭建规划 → 集采供应 → 运维维保 → 数字化管理，一次对接，全程无忧</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="openModal()">立即预约勘测 →</button>
+        <button class="btn-ghost" onclick="document.getElementById('consult').scrollIntoView({behavior:'smooth'})">获取专属方案</button>
+      </div>
+    </div>
+    <div class="hero-img">🏗️</div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">CORE SERVICES</div>
+      <h2 class="section-title">全链路闭环服务，覆盖实验室每一个生命周期</h2>
+      <p class="section-sub">依托搜科网供应链优势，整合专业施工、合规设计、全品类采购、标准化维保、智能管理，无需多方对接，平台一站式解决实验室所有需求，省心、省力、省钱、合规。</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card"><div class="svc-icon">🏗️</div><h3>实验室搭建</h3><p>合规设计+标准施工，涵盖通风、动线、水电、洁净系统，遵循GB/CNAS/GMP规范，适配高校/企业/第三方检测等全场景，免费上门勘测、定制方案。</p></div>
+      <div class="svc-card"><div class="svc-icon">🛒</div><h3>仪器集采</h3><p>全品类实验室仪器、耗材、家具一站式采购，源头直供、价优保真，支持标准化套餐/定制化集采，送货上门、安装调试、售后同步。</p></div>
+      <div class="svc-card"><div class="svc-icon">🔧</div><h3>设备维保</h3><p>专业团队上门，提供定期巡检、校准、维修、易损件更换服务，24小时应急响应，一物一码维保档案，延长设备寿命、降低运维成本。</p></div>
+      <div class="svc-card"><div class="svc-icon">💻</div><h3>管理系统</h3><p>智能实验室管理系统，覆盖设备、试剂、样品、人员全管理，自动提醒、合规报表、安全监控，实现实验室数字化升级。</p></div>
+      <div class="svc-card"><div class="svc-icon">📋</div><h3>合规咨询</h3><p>提供GB/CNAS/GMP规范下的合规设计方案、验收报告，协助客户完成CNAS、GMP等认证辅导，满足各类审计要求。</p></div>
+      <div class="svc-card"><div class="svc-icon">📦</div><h3>耗材供应</h3><p>常用耗材、玻璃器皿、试剂一站式稳定供应，实时库存监控，智能补货提醒，避免实验中断。</p></div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">合作品牌</div></div>
+      <div class="stat-item"><div class="stat-num">24h</div><div class="stat-label">维保响应</div></div>
+      <div class="stat-item"><div class="stat-num">30%</div><div class="stat-label">成本降低</div></div>
+      <div class="stat-item"><div class="stat-num">100+</div><div class="stat-label">服务案例</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg" id="construction">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">LAB CONSTRUCTION</div>
+      <h2 class="section-title">专业实验室搭建，合规、安全、高效</h2>
+      <p class="section-sub">从勘测到验收，全流程标准化服务，杜绝返工、降低合规风险</p>
+    </div>
+    <div class="process-grid">
+      <div class="proc-step"><div class="proc-num">1</div><h4>需求勘测</h4><p>上门测量、行业合规评估、实验流程梳理</p></div>
+      <div class="proc-step"><div class="proc-num">2</div><h4>方案设计</h4><p>平面布局、通风/水电/气路设计、效果图+预算</p></div>
+      <div class="proc-step"><div class="proc-num">3</div><h4>标准施工</h4><p>装修、通风、洁净、供气、三废处理、家具安装</p></div>
+      <div class="proc-step"><div class="proc-num">4</div><h4>竣工验收</h4><p>通风测试、洁净度检测、电路负载、合规验收</p></div>
+      <div class="proc-step"><div class="proc-num">5</div><h4>售后保障</h4><p>1年质保、终身维护、操作培训</p></div>
+    </div>
+    <div class="std-grid">
+      <div class="std-card">
+        <h4>📐 基础设计规范</h4>
+        <ul>
+          <li>GB 50346-2011《生物安全实验室建筑技术规范》</li>
+          <li>GB 50016-2014《建筑设计防火规范》（耐火等级≥二级）</li>
+          <li>GB 50052-2009《供配电系统设计规范》（精密仪器配UPS）</li>
+          <li>房间净高≥2.8m；门向外开启、设观察窗</li>
+        </ul>
+      </div>
+      <div class="std-card">
+        <h4>💨 通风系统标准</h4>
+        <ul>
+          <li>通风柜面风速：0.4–0.6 m/s（国标）</li>
+          <li>化学实验室换气次数≥12次/小时，保持-5~-10Pa负压</li>
+          <li>镀锌钢板/PP材质风管，支管6–8m/s，干管8–14m/s</li>
+          <li>废气处理：活性炭吸附+UV光解+喷淋塔</li>
+        </ul>
+      </div>
+      <div class="std-card">
+        <h4>🔄 动线设计标准</h4>
+        <ul>
+          <li>人流动线：公共区→更衣→缓冲→实验区（单向、禁逆行）</li>
+          <li>物流动线：清洁品专用通道→实验区；废弃物专用通道→出口</li>
+          <li>PCR/生物实验室："回字形"布局，缓冲间互锁门</li>
+        </ul>
+      </div>
+    </div>
+    <div class="btm-btns">
+      <button class="btn-primary" onclick="openModal()">📥 下载方案模板</button>
+      <button class="btn-ghost" onclick="openModal()">📞 立即预约勘测</button>
+      <button class="btn-ghost" onclick="openModal()">💰 获取精准报价</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="procurement">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">PROCUREMENT</div>
+      <h2 class="section-title">实验室集采，价优保真、交付快捷</h2>
+      <p class="section-sub">整合仪器、耗材、家具全品类，适配不同场景，支持套餐采购、定制采购</p>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg-card">
+        <div class="pkg-tag">基础版</div>
+        <div class="pkg-name">高校基础实验室套餐</div>
+        <div class="pkg-desc">化学/生物/物理基础教学实验室</div>
+        <div class="pkg-price">¥8万起 <span>/ 含基础配置</span></div>
+        <ul class="pkg-list">
+          <li>实验台×4、通风柜×2、试剂柜×2、天平台×1</li>
+          <li>常用仪器×10套、玻璃器皿全套、基础试剂套装</li>
+          <li>免费布局设计+送货安装+调试培训</li>
+        </ul>
+        <button class="pkg-btn" onclick="openModal()">立即咨询</button>
+      </div>
+      <div class="pkg-card popular">
+        <div class="pkg-tag">标准版</div>
+        <div class="pkg-name">企业研发实验室套餐</div>
+        <div class="pkg-desc">药企/化工/材料研发QC实验室</div>
+        <div class="pkg-price">¥18万起 <span>/ 含标准配置</span></div>
+        <ul class="pkg-list">
+          <li>精密仪器区+样品前处理区+试剂存储区</li>
+          <li>通风系统+CNAS/GMP合规辅导</li>
+          <li>全流程集采+终身维保+智能管理系统1年</li>
+        </ul>
+        <button class="pkg-btn" onclick="openModal()">立即咨询</button>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-tag">旗舰版</div>
+        <div class="pkg-name">第三方检测实验室套餐</div>
+        <div class="pkg-desc">食品/环境/医疗第三方检测机构</div>
+        <div class="pkg-price">¥35万起 <span>/ 含全配置</span></div>
+        <ul class="pkg-list">
+          <li>分析仪器全套+洁净实验区+三废处理系统</li>
+          <li>试剂管理系统+合规验收辅导+仪器校准</li>
+          <li li>专人对接+全程维保+管理系统永久授权</li>
+        </ul>
+        <button class="pkg-btn" onclick="openModal()">立即咨询</button>
+      </div>
+    </div>
+    <div class="cat-row">
+      <div class="cat-card"><h4>🔬 仪器设备</h4><ul><li>通用仪器：pH计、电子天平、灭菌器、干燥箱、培养箱、离心机</li><li>分析仪器：分光光度计、气相/液相色谱、原子吸收、ICP-MS</li><li>物性仪器：拉伸试验机、硬度计、DSC</li></ul></div>
+      <div class="cat-card"><h4>🧪 耗材器皿</h4><ul><li>玻璃器皿：烧杯、烧瓶、容量瓶、移液管、滴定管</li><li>塑料耗材：离心管、吸头、培养皿、冻存管</li><li>试剂：通用试剂、色谱纯、基准试剂、生化试剂</li></ul></div>
+      <div class="cat-card"><h4>🪑 实验室家具</h4><ul><li>核心家具：实验台、通风柜、试剂柜、防爆柜、天平台、气瓶柜</li><li>材质：全钢、钢木、PP（耐酸碱）、不锈钢</li><li>支持定制尺寸，适配不同实验室场景</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg" id="maintenance">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">MAINTENANCE</div>
+      <h2 class="section-title">专业仪器维保，降低运维成本</h2>
+      <p class="section-sub">标准化维保流程，24小时应急响应，全生命周期跟踪</p>
+    </div>
+    <div class="maint-grid">
+      <div class="maint-card"><div class="maint-icon">🔍</div><h4>定期巡检</h4><p>季度/半年度/年度上门，全面检测、校准、清洁，出具巡检报告，提前发现潜在问题</p></div>
+      <div class="maint-card"><div class="maint-icon">🔧</div><h4>故障维修</h4><p>24小时响应，48小时上门，一般故障当日修复，复杂故障提供备用机，保障实验连续性</p></div>
+      <div class="maint-card"><div class="maint-icon">🔩</div><h4>耗材更换</h4><p>原厂配件，价格透明，免费安装调试，无隐形消费，确保设备最佳运行状态</p></div>
+      <div class="maint-card"><div class="maint-icon">📋</div><h4>维保档案</h4><p>一物一码，记录设备全生命周期维保信息，自动提醒下次维保时间，管理更轻松</p></div>
+    </div>
+    <div class="maint-levels">
+      <div class="lvl-item"><h5>日常</h5><p>每日：电源、异响、清洁、外观检查</p></div>
+      <div class="lvl-item"><h5>周保养</h5><p>光学部件擦拭、液路检漏、简单校准</p></div>
+      <div class="lvl-item"><h5>月度</h5><p>内部除尘、滤网更换、性能核查</p></div>
+      <div class="lvl-item"><h5>季度/年度</h5><p>全面校准、易损件更换、性能审计</p></div>
+    </div>
+    <div class="btm-btns">
+      <button class="btn-primary" onclick="openModal()">📞 立即预约维保</button>
+      <button class="btn-ghost" onclick="openModal()">📥 下载维保手册</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="lms">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">LMS</div>
+      <h2 class="section-title">智能实验室管理系统</h2>
+      <p class="section-sub">设备 / 试剂 / 样品 / 人员全链路数字化管理，满足 ISO 17025 / GMP 合规要求</p>
+    </div>
+    <div class="lms-grid">
+      <div class="lms-card"><h4>🖥️ 设备管理</h4><ul><li>一物一码档案，全程可追溯</li><li>自动提醒校准/维保时间</li><li>设备预约使用，避免冲突</li><li>使用率统计，优化资源配置</li><li>故障报警，及时处理异常</li></ul></div>
+      <div class="lms-card"><h4>🧪 试剂管理</h4><ul><li>实时监控试剂库存，智能补货</li><li>有效期预警，避免过期浪费</li><li>完整出入库记录，可追溯</li><li>SDS说明书在线查询</li><li>低温存储监控，保障安全</li></ul></div>
+      <div class="lms-card"><h4>📦 样品管理</h4><ul><li>样品全流程追踪，条码/RFID扫码</li><li>记录样品状态、处理流程</li><li>关联实验数据，确保完整性</li><li>样品位置实时查询，快速定位</li></ul></div>
+      <div class="lms-card"><h4>🔒 安全监控</h4><ul><li>7×24小时温湿度、VOC浓度监测</li><li>漏水、漏电异常自动报警</li><li>门禁管理，权限分级可控</li><li>视频监控系统，全天候保障</li></ul></div>
+      <div class="lms-card"><h4>👥 人员管理</h4><ul><li>记录培训考核、资质授权</li><li>支持电子签名，留存操作日志</li><li>明确责任分工，满足合规要求</li></ul></div>
+      <div class="lms-card"><h4>📊 合规报表</h4><ul><li>自动生成ISO 17025、GMP、CNAS审计报告</li><li>数据可导出，满足合规审计需求</li><li>报表生成时间缩短70%</li></ul></div>
+    </div>
+    <div class="lms-stats">
+      <div class="lms-stat"><div class="n">30%</div><div class="lbl">设备寿命延长</div></div>
+      <div class="lms-stat"><div class="n">40%</div><div class="lbl">耗材浪费减少</div></div>
+      <div class="lms-stat"><div class="n">70%</div><div class="lbl">报告生成提速</div></div>
+      <div class="lms-stat"><div class="n">90%</div><div class="lbl">事故率降低</div></div>
+      <div class="lms-stat"><div class="n">100%</div><div class="lbl">合规审计通过</div></div>
+    </div>
+    <div class="btm-btns">
+      <button class="btn-primary" onclick="openModal()">🆓 免费试用</button>
+      <button class="btn-ghost" onclick="openModal()">🎥 预约演示</button>
+    </div>
+  </div>
+</section>
+
+<section class="section bg" id="cases">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">CASES</div>
+      <h2 class="section-title">真实案例，专业服务值得信赖</h2>
+      <p class="section-sub">已为全国上百家高校、企业、第三方检测机构提供服务</p>
+    </div>
+    <div class="case-row">
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-badge">高校</div>
+          <div class="case-title">某高校化学实验室搭建+集采项目</div>
+          <div class="case-meta">🏢 200㎡ · 📋 GB 50346 · 🔬 基础化学教学</div>
+        </div>
+        <div class="case-body">
+          <h5>服务内容</h5>
+          <ul class="case-svc"><li>实验室勘测与需求分析</li><li>合规布局设计与通风系统规划</li><li>实验台/家具安装与调试</li><li>常用仪器+耗材一站式集采</li><li>人员培训与维保服务</li></ul>
+          <div class="case-quote">"方案合规，施工高效，采购价格透明，后期维保响应及时，完全满足教学科研需求。"</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-badge">药企</div>
+          <div class="case-title">某药企QC实验室+管理系统部署</div>
+          <div class="case-meta">🏢 300㎡ · 📋 CNAS/GMP · 🔬 药品质量检测</div>
+        </div>
+        <div class="case-body">
+          <h5>服务内容</h5>
+          <ul class="case-svc"><li>CNAS/GMP合规辅导与认证</li><li>实验室标准化搭建与验收</li><li>精密仪器选型与集采</li><li>设备全生命周期维保</li><li>智能实验室管理系统部署</li></ul>
+          <div class="case-quote">"一站式服务省去了多方对接的麻烦，合规性有保障，管理系统大幅提升了实验室管理效率。"</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-badge">检测机构</div>
+          <div class="case-title">某第三方检测机构维保+集采项目</div>
+          <div class="case-meta">🏢 500㎡ · 📋 食品/环境 · 🔬 定期维保</div>
+        </div>
+        <div class="case-body">
+          <h5>服务内容</h5>
+          <ul class="case-svc"><li>仪器季度巡检+年度校准</li><li>7×24小时应急故障维修</li><li>耗材定期集采与稳定供应</li><li>一物一码维保档案管理</li><li>实验室整体运维优化方案</li></ul>
+          <div class="case-quote">"维保团队专业，响应速度快，耗材供应及时，价格优惠，有效降低了运维成本。"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="downloads">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">DOWNLOADS</div>
+      <h2 class="section-title">免费下载实验室资料</h2>
+      <p class="section-sub">标准化文档可直接套用，助力实验室建设与管理</p>
+    </div>
+    <div class="dl-grid">
+      <div class="dl-card" onclick="alert('下载功能即将上线，请通过在线咨询获取资料')"><div class="dl-icon">📋</div><div><h4>实验室设计规范文档</h4><p>GB标准+设计要点</p></div></div>
+      <div class="dl-card" onclick="alert('下载功能即将上线，请通过在线咨询获取资料')"><div class="dl-icon">💨</div><div><h4>通风系统设计施工方案</h4><p>技术参数+案例</p></div></div>
+      <div class="dl-card" onclick="alert('下载功能即将上线，请通过在线咨询获取资料')"><div class="dl-icon">📐</div><div><h4>实验室平面布局图集</h4><p>120+布局图</p></div></div>
+      <div class="dl-card" onclick="alert('下载功能即将上线，请通过在线咨询获取资料')"><div class="dl-icon">🔧</div><div><h4>仪器设备维护保养手册</h4><p>7大类仪器维保要点</p></div></div>
+      <div class="dl-card" onclick="alert('下载功能即将上线，请通过在线咨询获取资料')"><div class="dl-icon">💻</div><div><h4>实验室管理系统功能说明书</h4><p>系统功能详解</p></div></div>
+      <div class="dl-card" onclick="alert('下载功能即将上线，请通过在线咨询获取资料')"><div class="dl-icon">📝</div><div><h4>实验室搭建方案模板</h4><p>可直接套用</p></div></div>
+      <div class="dl-card" onclick="alert('下载功能即将上线，请通过在线咨询获取资料')"><div class="dl-icon">💰</div><div><h4>实验室集采报价模板</h4><p>报价参考</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg" id="faq">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">常见问题</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Q1：实验室搭建需要多久？</div><div class="faq-a">A1：根据实验室面积和复杂程度，常规200-300㎡实验室，从勘测到验收完成，周期为30-60天；复杂洁净实验室/生物安全实验室，周期为60-90天。</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Q2：采购的仪器有质保吗？质保期多久？</div><div class="faq-a">A2：所有仪器均享受原厂质保，常规仪器质保1年，精密仪器质保1-3年（具体以仪器型号为准），同时可叠加我们的维保服务，延长质保周期。</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Q3：维保服务覆盖哪些区域？响应时间是多久？</div><div class="faq-a">A3：维保服务覆盖全国主要城市，核心城市24小时内上门，偏远地区48小时内上门；紧急故障可提供远程指导，优先排查解决。</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Q4：管理系统可以适配现有实验室设备吗？</div><div class="faq-a">A4：可以适配，支持现有设备录入、一物一码绑定；常规实验室（200-300㎡）部署周期为7-10天，包含设备录入、人员培训、系统调试。</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Q5：实验室搭建可以满足CNAS/GMP等合规要求吗？</div><div class="faq-a">A5：可以，我们的设计和施工严格遵循GB 50346、CNAS、GMP等相关规范，提供合规设计方案、验收报告，可协助客户完成合规认证辅导。</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="recruitment">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">RECRUITMENT</div>
+      <h2 class="section-title">招聘求职专区</h2>
+      <p class="section-sub">扫码添加企微，社群内部对接</p>
+    </div>
+    <div class="recruit-wrap">
+      <div class="rec-col">
+        <h3>📢 招聘岗位</h3>
+        <div class="recruit-item"><div class="ri-l"><h4>实验室工程师（售前技术支持）</h4><p>北京/上海/广州 · 15-25K</p></div><div class="ri-r"><span class="tag tag-b">全职</span><span class="tag tag-o">急招</span></div></div>
+        <div class="recruit-item"><div class="ri-l"><h4>仪器销售经理（实验室方向）</h4><p>全国 · 12-20K+提成</p></div><div class="ri-r"><span class="tag tag-b">全职</span></div></div>
+        <div class="recruit-item"><div class="ri-l"><h4>维保技术员（仪器校准/维修）</h4><p>上海 · 10-18K</p></div><div class="ri-r"><span class="tag tag-b">全职</span></div></div>
+        <div class="recruit-item"><div class="ri-l"><h4>实验室方案设计师</h4><p>北京 · 12-20K</p></div><div class="ri-r"><span class="tag tag-b">全职</span></div></div>
+      </div>
+      <div class="rec-col">
+        <h3>🙋 求职者信息</h3>
+        <div class="resume-item"><div><div class="res-name">张*明 <span>3年经验</span></div><div class="res-contact"><span>求职：实验室销售工程师</span><span>期望：上海/苏州</span></div></div><span class="tag tag-b">随时到岗</span></div>
+        <div class="resume-item"><div><div class="res-name">李*华 <span>5年经验</span></div><div class="res-contact"><span>求职：仪器维保工程师</span><span>期望：北京</span></div></div><span class="tag tag-b">1个月内</span></div>
+        <div class="resume-item"><div><div class="res-name">王*芳 <span>2年经验</span></div><div class="res-contact"><span>求职：实验室方案设计</span><span>期望：广州</span></div></div><span class="tag tag-b">随时到岗</span></div>
+        <div class="resume-item"><div><div class="res-name">赵*林 <span>4年经验</span></div><div class="res-contact"><span>求职：LIMS实施顾问</span><span>期望：远程</span></div></div><span class="tag tag-g">抢手</span></div>
+        <div class="res-note">更多求职信息请扫码添加企微社群内部对接</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="consult">
+  <div class="container">
+    <h2>免费获取定制方案</h2>
+    <p>1小时内安排专业顾问对接</p>
+    <div class="cta-form">
+      <p>📞 搜科之家实验室服务团队，为您量身定制解决方案</p>
+      <div class="form-row">
+        <input class="fi" type="text" placeholder="您的姓名 *" />
+        <input class="fi" type="tel" placeholder="手机号码 *" />
+      </div>
+      <div class="form-row f">
+        <select class="fi"><option value="">所属行业（请选择）</option><option>高校</option><option>药企</option><option>第三方检测机构</option><option>其他</option></select>
+      </div>
+      <div class="form-row f">
+        <input class="fi" type="text" placeholder="实验室面积（选填）" />
+      </div>
+      <button class="fs" onclick="submitForm(this)">提交预约 →</button>
+      <div class="cta-note">🔒 您的信息仅用于服务对接，绝不对外透露</div>
+    </div>
+    <div class="cta-dots"><span>💬</span> 或扫码添加企业微信，获取即时服务</div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 搜科之家 · 实验室一站式服务 &nbsp;|&nbsp; 搜科网供应链旗下品牌</p>
+    <p style="margin-top:4px"><a href="#">关于我们</a> | <a href="#">服务条款</a> | <a href="#">隐私政策</a> | <a href="#">联系我们</a></p>
+  </div>
+</footer>
+
+<div class="float">
+  <button class="float-btn" onclick="openModal()" title="立即咨询">💬</button>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal()">×</button>
+    <div id="modalForm">
+      <h3>💬 在线咨询</h3>
+      <p>请留下您的姓名+电话+行业，我们1小时内安排专员对接</p>
+      <div class="form-row"><input class="fi" type="text" placeholder="您的姓名 *" /><input class="fi" type="tel" placeholder="手机号码 *" /></div>
+      <div class="form-row f"><select class="fi"><option value="">所属行业（请选择）</option><option>高校</option><option>药企</option><option>第三方检测机构</option><option>其他</option></select></div>
+      <div class="form-row f"><input class="fi" type="text" placeholder="实验室面积（选填）" /></div>
+      <button class="fs" onclick="submitForm(this)">提交预约 →</button>
+      <div class="cta-note">🔒 您的信息仅用于服务对接，绝不对外透露</div>
+    </div>
+    <div class="modal-succ" id="modalSucc">
+      <div class="ms-icon">✅</div>
+      <h4>预约已提交！</h4>
+      <p>我们的顾问将在1小时内与您联系，请保持电话畅通。</p>
+      <button class="fs" style="margin-top:20px" onclick="closeModal()">关闭</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(){document.getElementById('modalOverlay').classList.add('show');document.getElementById('modalForm').style.display='block';document.getElementById('modalSucc').classList.remove('show');document.body.style.overflow='hidden'}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('show');document.body.style.overflow=''}
+function submitForm(btn){btn.textContent='提交中...';btn.disabled=true;setTimeout(function(){document.getElementById('modalForm').style.display='none';document.getElementById('modalSucc').classList.add('show');btn.textContent='提交预约 →';btn.disabled=false},800)}
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}})});
+var sections=document.querySelectorAll('section[id]'),navItems=document.querySelectorAll('.nav-item:not(.nav-cta)');
+window.addEventListener('scroll',function(){var cur='';sections.forEach(function(s){if(s.getBoundingClientRect().top<=80)cur=s.id});navItems.forEach(function(n){n.classList.remove('active')});var a=document.querySelector('.nav-item[href="#'+cur+'"]');if(a)a.classList.add('active')});
+</script>
+
+</body>
+</html>
